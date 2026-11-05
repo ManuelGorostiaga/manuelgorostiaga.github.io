@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Manuel Gorostiaga - Director & Producer | Card Game Developer | Writer" />
-  <meta name="theme-color" content="#09090b" />
-  <title>Manuel Gorostiaga | Director & Producer</title>
+  <meta name="description" content="Manuel Gorostiaga: Game Director &amp; Producer, Card Game Designer, Writer." />
+  <meta name="theme-color" content="#faf9f5" />
+  <title>Manuel Gorostiaga · Game Director &amp; Writer</title>
   <link rel="stylesheet" href="./css/style.css" />
 </head>
 
@@ -15,6 +15,7 @@
     <div class="nav-container">
       <a href="#hero" class="nav-brand">
         <span class="nav-brand-title">Manuel Gorostiaga</span>
+        <span class="nav-brand-subtitle">Director &amp; Writer</span>
       </a>
 
       <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -23,127 +24,152 @@
         <span></span>
       </button>
 
-      <ul class="nav-links">
-        <li class="nav-item dropdown">
-          <a href="#projects" class="nav-link dropdown-toggle" id="projectsDropdownToggle" aria-haspopup="true" aria-expanded="false">
-            Projects <span class="chevron">▾</span>
-          </a>
-          <div class="dropdown-menu" id="projectsDropdown" role="menu">
-            <a href="#project-tavern" class="dropdown-item" role="menuitem">
-              <span class="dropdown-item-title">The Tavern at the End of the Road</span>
-              <span class="dropdown-item-role">Director & Producer</span>
-            </a>
-            <a href="#project-yo-fire" class="dropdown-item" role="menuitem">
-              <span class="dropdown-item-title">Yo! This Gameplay's Fire</span>
-              <span class="dropdown-item-role">Solo Developer</span>
-            </a>
-            <a href="#project-crestfallen" class="dropdown-item" role="menuitem">
-              <span class="dropdown-item-title">Crestfallen Game Studio</span>
-              <span class="dropdown-item-role">Co-Founder</span>
-            </a>
-            <a href="#project-indie-space" class="dropdown-item" role="menuitem">
-              <span class="dropdown-item-title">Indie Game Space @ Crack Bang Boom</span>
-              <span class="dropdown-item-role">Co-Producer</span>
-            </a>
-          </div>
-        </li>
-        <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="#writing" class="nav-link">Articles</a></li>
-        <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-      </ul>
+      <div class="nav-menu-wrapper" id="navMenuWrapper">
+        <ul class="nav-links">
+          <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#writings" class="nav-link">Articles</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle reading appearance" title="Toggle between Archival Paper and Inkroom">
+          <span class="theme-label">Paper</span>
+          <span class="theme-icon">☼</span>
+        </button>
+      </div>
     </div>
   </nav>
 
   <header id="hero" class="hero-section">
-    <div class="hero-content">
+    <div class="hero-inner">
       <h1 class="hero-title">Manuel Gorostiaga</h1>
-      <p class="hero-subtitle">Director & Producer | Card Game Developer | Writer</p>
+
+      <p class="hero-subtitle">
+        Director &amp; Producer | Card Game Developer | Writer
+      </p>
+
       <div class="hero-actions">
-        <a href="#projects" class="hero-btn-primary">Explore Projects ↓</a>
+        <a href="#projects" class="hero-action-link">
+          <span>Explore Projects</span>
+          <span class="action-arrow">→</span>
+        </a>
       </div>
-    </div>
-    <div class="hero-scroll-indicator">
-      <span>Scroll</span>
-      <span>↓</span>
     </div>
   </header>
 
   <main>
-    <section id="projects" class="showcase-container">
-      <div id="projects-showcase"></div>
-    </section>
-
-    <section id="about" class="section-container">
-      <div class="section-header">
-        <span class="section-eyebrow">Background</span>
-        <h2 class="section-title">About</h2>
-      </div>
-      <div class="about-card">
-        <div class="about-text">
-          <p>Hi! How are you today?</p>
-          <p>
-            I'm Manu. I've worked as a backend developer, wrote books, studied game design at university, and co-founded
-            <a href="https://crestfallen.games" target="_blank" rel="noopener noreferrer">Crestfallen Game Studio</a>.
-            I am passionate about words, expressive game mechanics, and evocative storytelling. Personally, I choose card games and writing.
+    <!-- Section 1: Projects -->
+    <section id="projects" class="folio-section">
+      <div class="section-container">
+        <header class="section-header">
+          <h2 class="section-title">Selected Projects</h2>
+          <p class="section-summary">
+            A showcase of game direction, production, and independent game design.
           </p>
-          <p>
-            My work centers around creative direction, game feel, tight systems design, and production pipelines for ambitious indie projects.
+        </header>
+
+        <div id="projects-showcase" class="catalogue-stream"></div>
+      </div>
+    </section>
+
+    <!-- Section 2: About / Statement -->
+    <section id="about" class="folio-section statement-section">
+      <div class="section-container">
+        <header class="section-header">
+          <h2 class="section-title">About</h2>
+        </header>
+
+        <div class="statement-card tactile-card">
+          <div class="statement-prose">
+            <p class="monumental-lead">
+              Hi! How are you today?
+            </p>
+            <p>
+              I'm Manu. I've worked as a backend developer, wrote books, studied game design at university, and co-founded <a href="https://crestfallen.games" target="_blank" rel="noopener noreferrer" class="inline-link">Crestfallen Game Studio</a>. I am passionate about words, expressive game mechanics, and evocative storytelling. Personally, I choose card games and writing.
+            </p>
+            <p>
+              My work centers around creative direction, game feel, tight systems design, and production pipelines for ambitious indie projects.
+            </p>
+
+            <div class="about-highlights-grid">
+              <div class="highlight-item">
+                <span class="highlight-label">Focus</span>
+                <span class="highlight-value">Game Direction &amp; Production</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-label">Specialty</span>
+                <span class="highlight-value">Card Games &amp; Narrative Systems</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-label">Studio</span>
+                <span class="highlight-value">Crestfallen Games</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Essays / Articles -->
+    <section id="writings" class="folio-section writings-section">
+      <div class="section-container">
+        <header class="section-header">
+          <h2 class="section-title">Articles</h2>
+          <p class="section-summary">
+            Reflections, game design thoughts, and essays published on Medium.
           </p>
+        </header>
+
+        <div id="articles-list" class="essays-grid">
+          <div class="essays-loading">Loading articles from Medium…</div>
         </div>
-        <div class="about-highlights">
-          <div class="highlight-item">
-            <span class="highlight-label">Focus</span>
-            <span class="highlight-value">Game Direction & Production</span>
-          </div>
-          <div class="highlight-item">
-            <span class="highlight-label">Specialty</span>
-            <span class="highlight-value">Card Games & Narrative Systems</span>
-          </div>
-          <div class="highlight-item">
-            <span class="highlight-label">Studio</span>
-            <span class="highlight-value">Crestfallen Games</span>
-          </div>
+
+        <div class="essays-footer-action">
+          <a href="https://medium.com/@gorostiagamanuel" target="_blank" rel="noopener noreferrer" class="dispatch-link">
+            <span>Read all published writings on Medium</span>
+            <span class="action-arrow">↗</span>
+          </a>
         </div>
       </div>
     </section>
 
-    <section id="writing" class="section-container">
-      <div class="section-header">
-        <span class="section-eyebrow">Writings & Thoughts</span>
-        <h2 class="section-title">Articles</h2>
-      </div>
-      <div id="articles-list" class="articles-grid"></div>
-    </section>
+    <!-- Section 4: Contact -->
+    <section id="contact" class="folio-section contact-section">
+      <div class="section-container">
+        <header class="section-header">
+          <h2 class="section-title">Let's build something great.</h2>
+          <p class="section-summary">
+            Whether you're interested in collaborating, discussing game dev, or talking about Magic: The Gathering, feel free to reach out.
+          </p>
+        </header>
 
-    <section id="contact" class="section-container">
-      <div class="contact-card">
-        <span class="contact-eyebrow">Get in Touch</span>
-        <h2 class="contact-heading">Let's build something great.</h2>
-        <p class="contact-subtext">
-          Whether you're interested in collaborating, discussing game dev, or talking about Magic: The Gathering, feel free to reach out.
-        </p>
-        <div class="contact-actions">
-          <a href="mailto:gorostiagamanuel@gmail.com" class="contact-email-btn">Send Email ↗</a>
-          <button class="copy-email-btn" id="copyEmailBtn" data-email="gorostiagamanuel@gmail.com" aria-label="Copy email address to clipboard">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-            <span>Copy Email</span>
-          </button>
-        </div>
-        <div class="social-links">
-          <a href="https://crestfallen.games/" target="_blank" rel="noopener noreferrer" class="social-link">Crestfallen Games</a>
-          <a href="https://medium.com/@gorostiagamanuel" target="_blank" rel="noopener noreferrer" class="social-link">Medium</a>
-          <a href="https://github.com/manuelgorostiaga" target="_blank" rel="noopener noreferrer" class="social-link">GitHub</a>
-          <a href="https://store.steampowered.com/app/3933280/The_Tavern_at_the_End_of_the_Road" target="_blank" rel="noopener noreferrer" class="social-link">Steam</a>
+        <div class="contact-card tactile-card">
+          <div class="contact-grid">
+            <div class="contact-primary">
+              <span class="contact-label">Direct Channel</span>
+              <a href="mailto:gorostiagamanuel@gmail.com" class="contact-email">gorostiagamanuel@gmail.com</a>
+            </div>
+
+            <div class="contact-links-col">
+              <span class="contact-label">External Records</span>
+              <ul class="contact-links-list">
+                <li><a href="https://crestfallen.games/" target="_blank" rel="noopener noreferrer" class="contact-link"><span>Crestfallen Games</span><span class="action-arrow">↗</span></a></li>
+                <li><a href="https://store.steampowered.com/app/3933280/The_Tavern_at_the_End_of_the_Road" target="_blank" rel="noopener noreferrer" class="contact-link"><span>Steam · The Tavern at the End of the Road</span><span class="action-arrow">↗</span></a></li>
+                <li><a href="https://github.com/manuelgorostiaga" target="_blank" rel="noopener noreferrer" class="contact-link"><span>GitHub</span><span class="action-arrow">↗</span></a></li>
+                <li><a href="https://medium.com/@gorostiagamanuel" target="_blank" rel="noopener noreferrer" class="contact-link"><span>Medium</span><span class="action-arrow">↗</span></a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>© Manuel Gorostiaga. Crafted with intention.</p>
+    <div class="footer-container">
+      <p class="copyright">© Manuel Gorostiaga. Crafted with intention.</p>
+      <p class="footer-note">Typeset in Newsreader &amp; Palatino.</p>
+    </div>
   </footer>
 
   <script type="module" src="./js/main.js"></script>

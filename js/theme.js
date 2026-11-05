@@ -5,29 +5,30 @@ export function initTheme() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
         root.setAttribute('data-theme', savedTheme);
-        updateIcon(savedTheme);
+        updateThemeDisplay(savedTheme);
+    } else {
+        root.setAttribute('data-theme', 'light');
+        updateThemeDisplay('light');
     }
 
-    toggle?.addEventListener('click', () => {
-        const currentTheme = root.getAttribute('data-theme');
-        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (!toggle) return;
 
-        let newTheme;
-        if (currentTheme === 'dark' || (!currentTheme && systemDark)) {
-            newTheme = 'light';
-        } else {
-            newTheme = 'dark';
-        }
+    toggle.addEventListener('click', () => {
+        const currentTheme = root.getAttribute('data-theme') || 'light';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
         root.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
-        updateIcon(newTheme);
+        updateThemeDisplay(newTheme);
     });
 
-    function updateIcon(theme) {
+    function updateThemeDisplay(theme) {
         if (!toggle) return;
-        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = theme === 'dark' || (!theme && systemDark);
-        toggle.textContent = isDark ? '☀️' : '🌙';
+        const isDark = theme === 'dark';
+        toggle.innerHTML = `
+            <span class="theme-label">${isDark ? 'Paper' : 'Inkroom'}</span>
+            <span class="theme-icon">${isDark ? '☼' : '☾'}</span>
+        `;
+        toggle.setAttribute('title', isDark ? 'Switch to Archival Paper' : 'Switch to Inkroom');
     }
 }

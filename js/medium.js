@@ -1,18 +1,3 @@
-const fallbackArticles = [
-    {
-        title: '8 Prototypes in 1 Semester',
-        link: './8-games-in-1-semester/',
-        pubDate: '2023-01-15',
-        description: 'Reflections and core design lessons from shipping eight distinct game prototypes in a single semester.'
-    },
-    {
-        title: 'Simplifying a Tabletop RPG',
-        link: './simplifying-a-tabletop-rpg/',
-        pubDate: '2022-11-20',
-        description: 'How removing friction and streamlining resolution mechanics can make tabletop games dramatically more engaging.'
-    }
-];
-
 export async function loadMediumArticles() {
     const container = document.getElementById('articles-list');
     if (!container) {
@@ -25,16 +10,27 @@ export async function loadMediumArticles() {
         const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
         const response = await fetch(apiUrl);
-        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(`Failed to fetch Medium RSS: ${response.status} ${response.statusText}`);
+        }
 
-        if (data.status === 'ok' && data.items && data.items.length > 0) {
+        const data = await response.json();
+        if (data.status === 'ok' && Array.isArray(data.items) && data.items.length > 0) {
             renderArticleCards(container, data.items.slice(0, 6));
         } else {
-            renderArticleCards(container, fallbackArticles);
+            renderEmptyNotice(container);
         }
     } catch {
-        renderArticleCards(container, fallbackArticles);
+        renderEmptyNotice(container);
     }
+}
+
+function renderEmptyNotice(container) {
+    container.innerHTML = `
+        <div class="essays-empty-card tactile-card">
+            <p>Recent dispatches and critical essays can be accessed directly on <a href="https://medium.com/@gorostiagamanuel" target="_blank" rel="noopener noreferrer" class="inline-link">Medium</a>.</p>
+        </div>
+    `;
 }
 
 function renderArticleCards(container, articles) {
@@ -43,20 +39,26 @@ function renderArticleCards(container, articles) {
         const snippet = cleanSnippet(post.description || post.content);
 
         return `
-            <a href="${post.link}" target="_blank" rel="noopener noreferrer" class="article-card">
-                <div class="article-card-header">
-                    <span class="article-date">${formattedDate}</span>
-                    <span class="article-arrow">↗</span>
-                </div>
-                <h4 class="article-title">${post.title}</h4>
-                ${snippet ? `<p class="article-snippet">${snippet}</p>` : ''}
-            </a>
+            <article class="tactile-card essay-card">
+                <a href="${post.link}" target="_blank" rel="noopener noreferrer" class="essay-card-inner">
+                    <div class="card-taxonomy">
+                        <time class="essay-date">${formattedDate}</time>
+                        <span class="card-taxonomy-id">DISPATCH</span>
+                    </div>
+                    <h3 class="essay-title">${post.title}</h3>
+                    ${snippet ? `<p class="essay-snippet">${snippet}</p>` : ''}
+                    <div class="essay-card-footer">
+                        <span class="essay-action-label">Read on Medium</span>
+                        <span class="action-arrow">↗</span>
+                    </div>
+                </a>
+            </article>
         `;
     }).join('');
 }
 
 function formatDate(dateString) {
-    if (!dateString) return 'Article';
+    if (!dateString) return 'Undated';
     try {
         const date = new Date(dateString);
         return date.toLocaleDateString('en-US', {
@@ -74,9 +76,9 @@ function cleanSnippet(rawHtml) {
     const temp = document.createElement('div');
     temp.innerHTML = rawHtml;
     const text = temp.textContent || temp.innerText || '';
-    const trimmed = text.trim().replace(/\s+/g, ' ');
-    if (trimmed.length > 130) {
-        return trimmed.substring(0, 127) + '...';
+    const trimmed = text.trim().replace(/\s+/g, ' ').replace(/—/g, ' - ');
+    if (trimmed.length > 150) {
+        return trimmed.substring(0, 147) + '…';
     }
     return trimmed;
 }
