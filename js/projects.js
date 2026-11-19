@@ -84,7 +84,6 @@ export function renderProjects() {
             <article class="tactile-card lead-card" id="project-${featureProject.id}">
                 <div class="card-taxonomy">
                     <span class="card-taxonomy-badge">${featureProject.type}</span>
-                    <span class="card-taxonomy-id">LEAD PROJECT</span>
                 </div>
 
                 <div class="lead-card-grid">
@@ -118,7 +117,7 @@ export function renderProjects() {
     if (secondaryProjects.length > 0) {
         html += `<div class="tactile-card-grid">`;
 
-        html += secondaryProjects.map((project, index) => {
+        html += secondaryProjects.map(project => {
             const linkHtml = project.links.length > 0
                 ? `<a href="${project.links[0].url}" target="_blank" rel="noopener noreferrer" class="card-action-link">
                      <span>${project.links[0].label}</span>
@@ -132,7 +131,6 @@ export function renderProjects() {
                 <article class="tactile-card secondary-card" id="project-${project.id}">
                     <div class="card-taxonomy">
                         <span class="card-taxonomy-badge">${project.type}</span>
-                        <span class="card-taxonomy-id">CARD 0${index + 1}</span>
                     </div>
 
                     <div class="secondary-card-body">
