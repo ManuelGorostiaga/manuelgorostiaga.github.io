@@ -420,6 +420,101 @@ button {
     font-weight: 500;
 }
 
+@property --fade-start {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0px;
+}
+
+@property --fade-end {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0px;
+}
+
+@keyframes reveal-fade-start {
+    to {
+        --fade-start: var(--fade-size);
+    }
+}
+
+@keyframes hide-fade-end {
+    from {
+        --fade-end: var(--fade-size);
+    }
+}
+
+.projects-tablist {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-snap-type: inline proximity;
+    scroll-padding-inline: 2.5rem;
+    border-bottom: 1px solid var(--paper-rule);
+    margin-bottom: 2.5rem;
+    --fade-size: 2.5rem;
+    mask:
+        linear-gradient(black, black) no-clip subtract,
+        linear-gradient(to right, black, transparent) 0 0 / var(--fade-start) 100% no-repeat no-clip,
+        linear-gradient(to right, transparent, black) 100% 0 / var(--fade-end) 100% no-repeat no-clip;
+    animation: reveal-fade-start linear both, hide-fade-end linear both;
+    animation-timeline: scroll(self inline);
+    animation-range: 0 var(--fade-size), calc(100% - var(--fade-size)) 100%;
+}
+
+.projects-tablist::-webkit-scrollbar {
+    display: none;
+}
+
+.projects-tab {
+    flex: none;
+    position: relative;
+    scroll-snap-align: start;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink-secondary);
+    padding: 0.75rem 1.1rem;
+    min-block-size: 44px;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+.projects-tab:hover {
+    color: var(--ink-black);
+}
+
+.projects-tab:focus-visible {
+    outline: 2px solid var(--accent-vermilion);
+    outline-offset: -2px;
+}
+
+.projects-tab[aria-selected="true"] {
+    color: var(--ink-black);
+}
+
+.projects-tab[aria-selected="true"]::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    border-block-end: 3px solid var(--accent-vermilion);
+}
+
+.projects-tabpanel:focus-visible {
+    outline: 2px solid var(--accent-vermilion);
+    outline-offset: 4px;
+    border-radius: var(--card-radius);
+}
+
+.placeholder-card {
+    max-width: var(--text-measure);
+}
+
 .catalogue-stream {
     display: flex;
     flex-direction: column;
@@ -521,6 +616,9 @@ button {
 }
 
 .card-actions-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
     margin-top: 0.75rem;
 }
 
@@ -574,7 +672,7 @@ button {
 
 .tactile-card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 2rem;
 }
 
